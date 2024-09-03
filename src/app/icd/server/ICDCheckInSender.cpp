@@ -107,6 +107,11 @@ CHIP_ERROR ICDCheckInSender::RequestResolve(ICDMonitoringEntry & entry, FabricTa
     memcpy(mHmac128KeyHandle.AsMutable<Crypto::Symmetric128BitsKeyByteArray>(),
            entry.hmacKeyHandle.As<Crypto::Symmetric128BitsKeyByteArray>(), sizeof(Crypto::Symmetric128BitsKeyByteArray));
 
+    ChipLogError(AppServer, "RequestResolve for entry idx: %u , node id: %u", static_cast<uint32_t>(entry.index), static_cast<uint32_t>(entry.checkInNodeID));
+
+    Logging::LogByteSpan(Logging::kLogModule_AppServer, Logging::kLogCategory_Error, ByteSpan(mAes128KeyHandle.As<Crypto::Symmetric128BitsKeyByteArray>(),sizeof(Crypto::Symmetric128BitsKeyByteArray)));
+    Logging::LogByteSpan(Logging::kLogModule_AppServer, Logging::kLogCategory_Error, ByteSpan(mHmac128KeyHandle.As<Crypto::Symmetric128BitsKeyByteArray>(),sizeof(Crypto::Symmetric128BitsKeyByteArray)));
+
     CHIP_ERROR err = AddressResolve::Resolver::Instance().LookupNode(request, mAddressLookupHandle);
 
     if (err == CHIP_NO_ERROR)
