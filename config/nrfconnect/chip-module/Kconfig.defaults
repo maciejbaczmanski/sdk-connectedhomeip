@@ -333,7 +333,7 @@ config MBEDTLS_ENABLE_HEAP
     default n
 
 config MBEDTLS_HEAP_SIZE
-    default 8192
+    default 8192 if !OPENTHREAD_BLE_TCAT
 
 # Enable PSA Crypto dependencies for Matter
 
@@ -448,10 +448,10 @@ config MBEDTLS_RSA_C
     default n
 
 config MBEDTLS_SSL_SRV_C
-    default n
+    default n if CHIP_WIFI
 
 config MBEDTLS_SSL_COOKIE_C
-    default n
+    default n if CHIP_WIFI
 
 config MBEDTLS_AES_ONLY_128_BIT_KEY_LENGTH
     default y

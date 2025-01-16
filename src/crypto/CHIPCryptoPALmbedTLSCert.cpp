@@ -34,6 +34,14 @@
 #include <mbedtls/x509_csr.h>
 
 #if defined(MBEDTLS_X509_CRT_PARSE_C)
+#undef MBEDTLS_X509_CRT_PARSE_C
+#endif
+
+#if defined(MBEDTLS_X509_CSR_PARSE_C)
+#undef MBEDTLS_X509_CSR_PARSE_C
+#endif
+
+#if defined(MBEDTLS_X509_CRT_PARSE_C)
 #include <mbedtls/x509_crt.h>
 #endif // defined(MBEDTLS_X509_CRT_PARSE_C)
 
