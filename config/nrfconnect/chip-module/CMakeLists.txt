@@ -41,6 +41,11 @@ include(generate_factory_data.cmake)
 if (NOT CHIP_ROOT)
     get_filename_component(CHIP_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../../.. REALPATH)
 endif()
+
+if (NOT ZAP_GENERATED)
+    get_filename_component(ZAP_GENERATED ${CHIP_ROOT}/zzz_generated/app-common REALPATH)
+endif()
+
 get_filename_component(GN_ROOT_TARGET ${CHIP_ROOT}/config/nrfconnect/chip-gn REALPATH)
 get_filename_component(COMMON_CMAKE_SOURCE_DIR ${CHIP_ROOT}/config/common/cmake REALPATH)
 
@@ -162,6 +167,8 @@ matter_add_gn_arg_bool  ("chip_enable_factory_data"               CONFIG_CHIP_FA
 matter_add_gn_arg_bool  ("chip_enable_read_client"                CONFIG_CHIP_ENABLE_READ_CLIENT)
 matter_add_gn_arg_bool  ("chip_mdns_minimal"                      CONFIG_WIFI_NRF70)
 matter_add_gn_arg_bool  ("chip_mdns_platform"                     CONFIG_NET_L2_OPENTHREAD)
+
+matter_add_gn_arg_string("zap_generated" ${ZAP_GENERATED})
 
 if (CONFIG_CHIP_ENABLE_ICD_SUPPORT)
     matter_add_gn_arg_bool  ("chip_enable_icd_lit"                       CONFIG_CHIP_ICD_LIT_SUPPORT)

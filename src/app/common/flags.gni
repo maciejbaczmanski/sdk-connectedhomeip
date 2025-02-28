@@ -1,0 +1,7 @@
+
+import("//build_overrides/chip.gni")
+
+declare_args() {
+  # Root directory for CHIP.
+  zap_generated = chip_root + "/zzz_generated/app-common"
+}
